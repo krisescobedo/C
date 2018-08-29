@@ -1,34 +1,81 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() //punto de entrada (funcion mostrar js)
+/* Al presionar el botón pedir números hasta que el usuario
+quiera, mostrar:
+1-Suma de los negativos. 2-Suma de los positivos.
+3-Cantidad de positivos.
+4-Cantidad de negativos. 5-Cantidad de ceros.
+6-Cantidad de números pares.
+7-Promedio de positivos. 8-Promedios de negativos.
+9-Diferencia entre positivos y negativos, (positvos-negativos).
+*/
+
+int main()
 {
-    int unNumero1;
-    float unNumero2;
-    char unCaracter;
-
-    printf("ingrese un numero: ");
-    scanf("%d", &unNumero1);
-    printf("el numero que ingreso es: %d\n", unNumero1);
-
-    setbuf(stdin,NULL);
-    printf("ingrese otro numero: ");
-    scanf("%f", &unNumero2);
-    printf("el numero que ingreso es: %f\n", unNumero2);
-
-    fflush(stdin);
-    printf("ingrese un caracter: ");
-    scanf("%c", &unCaracter);
-    printf("el caracter que ingreso es: %c\n", unCaracter);
-
-    // fflush(stdin) para linux(solo) y windows:  setbuf(stdin,NULL)
+    int numero;
+    char respuesta;
+    int positivoAcumulador=0;
+    int positivoContador=0;
+    int negativoContador=0;
+    int negativoAcumulador=0;
+    int cerosContador=0;
+    int paresCont=0;
+    float positivosPromedio;
+    float negativosPromedio;
 
 
+    for (int x=0;x<5;x++)
+    {
+        printf("Introducir un numero");
+        scanf("%d", &numero);
+        fflush(stdin);
 
-    /*printf("El numero es: %d,\t y el otro numero es: %.1f\n",unNumero1,unNumero2);
-    printf("El caracter es %c",unCaracter);
-    printf("%d--%d\n",unNumero1,&unNumero1); */
+        if (numero>0)
+        {
+            positivoContador++;
+            positivoAcumulador = positivoAcumulador+numero;
+        }
+        else
+        {
+            if (numero<0)
+            {
+            negativoContador++;
+            negativoAcumulador+=numero;
+            }
+            else
+            {
+            cerosContador++;
+            }
 
-    //scanf("%d",&unCaracter)
+        }
+        //numeros pares
+        if (numero%2==0)
+        {
+            paresCont++;
+        }
+
+
+
+
+      //  printf("desea introducir otro numero? s/n");
+      //  scanf("%c", &respuesta);
+
+
+    }
+
+    positivosPromedio=(float)positivoAcumulador/positivoContador;
+    negativosPromedio=(float)negativoAcumulador/negativoContador;
+
+    printf("la suma de los numeros negativos es: %d\n", negativoAcumulador);
+    printf("la suma de numeros positivos es: %d\n", positivoAcumulador);
+    printf("la cantidad de numeros postivos es: %d\n", positivoContador);
+    printf("la cantidad de numeros negativos es: %d\n", negativoContador);
+    printf("la cantidad de ceros es: %d\n", cerosContador);
+    printf("la cantidad de numeros pares es: %d\n", paresCont);
+    printf("el promedio de positivos es: %.2f\n", positivosPromedio);
+    printf("el promedio de negativos es: %.2f\n", negativosPromedio);
+
     return 0;
 }
